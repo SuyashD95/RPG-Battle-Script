@@ -3,6 +3,13 @@ import random
 from classes.game import BColors, Person
 from classes.magic import Spell
 from classes.inventory import Item
+# Using colorama library to display colored text on Windows Command Prompt (cmd)
+from colorama import init, deinit
+
+# Display player stats
+# init() will filter ANSI escape sequences out of any text sent to stdout or stderr, and replace them with
+# equivalent Win32 calls
+init()
 
 # Create Black Magic
 fire = Spell("Fire", 25, 600, "black")
@@ -198,3 +205,6 @@ while running:
                     print(players[target].get_name().replace(" ", "") + " has DIED.")
                     del (players[target])
 
+# To stop using colorama before your program exits, simply call deinit(). This will restore stdout and stderr to
+# their original values, so that Colorama is disabled.
+deinit()

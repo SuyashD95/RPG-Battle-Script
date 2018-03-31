@@ -1,4 +1,6 @@
 import random
+# Using colorama library to display colored text on Windows Command Prompt (cmd)
+from colorama import init, deinit
 
 
 class BColors:
@@ -251,10 +253,16 @@ class Person:
             current_mp = mp_string
 
         # Display player stats
+        # init() will filter ANSI escape sequences out of any text sent to stdout or stderr, and replace them with
+        # equivalent Win32 calls
+        init()
         print("                      _________________________                 __________")
         print(BColors.BOLD + self._name + ":" + "    " + current_hp + " |"
               + BColors.OK_GREEN + hp_bar + BColors.ENDC + "|       " + BColors.BOLD
               + current_mp + " |" + BColors.OK_BLUE + mp_bar + BColors.ENDC + "|")
+        # To stop using colorama before your program exits, simply call deinit(). This will restore stdout and stderr to
+        # their original values, so that Colorama is disabled.
+        deinit()
 
     def get_enemy_stats(self):
         """ Display stats of enemies. """
@@ -282,7 +290,13 @@ class Person:
             current_hp = hp_string
 
         # Display player stats
+        # init() will filter ANSI escape sequences out of any text sent to stdout or stderr, and replace them with
+        # equivalent Win32 calls
+        init()
         print("                      __________________________________________________")
         print(BColors.BOLD + self._name + ":" + "  " + current_hp + " |"
               + BColors.FAIL + hp_bar + BColors.ENDC + "|")
+        # To stop using colorama before your program exits, simply call deinit(). This will restore stdout and stderr to
+        # their original values, so that Colorama is disabled.
+        deinit()
 
